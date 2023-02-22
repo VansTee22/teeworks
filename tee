@@ -1,0 +1,24 @@
+import os
+import subprocess
+
+# Set the directory where the PDFs are located
+pdf_dir = '/path/to/pdf/directory/'
+
+# Set the output directory for the converted files
+output_dir = '/path/to/output/directory/'
+
+# Set the file format to convert to (e.g. 'docx', 'txt', 'png', etc.)
+output_format = 'docx'
+
+# Loop through each PDF file in the directory
+for filename in os.listdir(pdf_dir):
+    if filename.endswith('.pdf'):
+        # Create the full file path for the PDF
+        pdf_path = os.path.join(pdf_dir, filename)
+        
+        # Create the full file path for the output file
+        output_path = os.path.join(output_dir, os.path.splitext(filename)[0] + '.' + output_format)
+        
+        # Use subprocess to call the appropriate conversion command
+        if output_format == 'docx':
+            subprocess.call(['pandoc',
